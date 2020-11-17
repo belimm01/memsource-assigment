@@ -11,6 +11,11 @@ public class RestConfigurer implements RepositoryRestConfigurer {
 
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
+        config.getCorsRegistry()
+                .addMapping("/**")
+                .allowedOrigins("*")
+                .allowedMethods("OPTIONS", "HEAD", "GET", "PUT", "POST", "DELETE", "PATCH")
+                .allowedHeaders("*");
         config.exposeIdsFor(Project.class);
     }
 }
